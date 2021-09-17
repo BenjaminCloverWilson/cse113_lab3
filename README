@@ -1,0 +1,37 @@
+Pseudo Code:
+
+//Counts the number of elements in an array that are less than x.
+//A[1...N], an array with N elements
+count_l = 0
+
+for i = 1 to N
+    if A[i] < x
+        count_l = count_l + 1
+
+
+//Counts the number of elements in an array that are less than or equal to x.
+//A[1...N], an array with N elements
+count_leq = 0
+
+for i = 1 to N
+    if A[i] <= x
+        count_leq = count_leq + 1
+
+
+//Counts the number of elements in an array that are greater or equal to x.
+//A[1...N], an array with N elements
+count_geq = 0
+
+for i = 1 to N
+    if A[i] >= x
+        count_geq = count_geq + 1
+
+
+//Counts the number of elements in an array that are greater than a given element (A[x])
+//A[1...N], an array with N elements
+count_e = 0
+element = A[x] //Assigns the value of the element x as a variable
+
+for i = 1 to N
+    if A[i] > element
+        count = count_e + 1
