@@ -35,3 +35,37 @@ element = A[x] //Assigns the value of the element x as a variable
 for i = 1 to N
     if A[i] > element
         count = count_e + 1
+
+
+//Reverses an array
+//A[1...N], an array with N elements
+
+for i = 1 to (N / 2)
+    tmp = A[i]
+    A[i] = A[N + 1 - i]
+    A[N + 1 - i] = tmp
+
+
+//Counts even elements of an array
+//A[1...N], an array with N elements
+count_even = 0
+
+for i = 1 to N
+    if A[i] mod 2 == 0
+        count_even = count_even + 1
+
+//Counts odd elements of an array
+//A[1...N], an array with N elements
+count_odd = 0
+
+for i = 1 to N
+    if A[i] mod 2 != 0
+        count_odd = count_odd + 1
+
+//Counts number of elements of an array divisible by a certain number x
+//A[1...N], an array with N elements
+count_x = 0
+
+for i = 1 to N
+    if A[i] mod x == 0
+        count_odd = count_odd + 1
