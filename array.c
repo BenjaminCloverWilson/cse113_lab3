@@ -41,6 +41,9 @@ void print_array(int a[], size_t size)
 
 	for(i = 0; i < size; i++)
 		printf("a[%d] = %d\n", i, a[i]);
+
+	/* Added a new line to make the terminal cleaner */
+	printf("\n");
 }
 
 /** Returns the maximum value of an array
@@ -161,6 +164,237 @@ int get_count(int a[], size_t size, int type, int x)
 			}
 		}
 		break;
+	}
+
+	return count;
+}
+
+/** Searches an array for a certain value and (if present) returns the index
+ * of its location in the array.
+ * @param a[] The array in question
+ * @param size The length of the array
+ * @param x The number that is searched for in the array
+ * @return If the number is found, the location in the array is returned.
+ * Otherwise, a value of -1 is returned/maintained.
+ */
+int linear_search(int a[], size_t size, int x)
+{
+	int index = -1;
+	int i;
+
+	for (i = 0; i < size; i++)
+	{
+		if (a[i] == x)
+		{
+			index = i;
+		}
+	}
+
+	return index;
+}
+
+/** Finds the sum of all the elements in an array
+ * @param a[] The array in question
+ * @param size The length of the array
+ * @return The sum is simply all of the elements in an array added together
+ */
+int sum_ele(int a[], size_t size)
+{
+	int sum = 0;
+	int i;
+	
+	for (i = 0; i < size; i++)
+	{
+		sum += a[i];
+	}
+
+	return sum;
+}
+
+/** Finds the average of all the elements in an array
+ * @param size The length of an array
+ * @param sum The sum of all the elements in an array (calculated by sum_ele())
+ * @return Returns the average (sum of a set of number divided by the amount
+ * of addends for the sum) of an array
+ */
+double avg_ele(size_t size, int sum)
+{
+	double avg = (double)sum / (double)size;
+
+	return avg;
+}
+
+/** Reverses an array
+ * @param a[] the array whose order is reversed
+ * @param size the length of the array
+ */
+void reverse(int a[], size_t size)
+{
+	int tmp;
+	int i;
+
+	for (i = 0; i < size / 2; i++)
+	{
+		tmp = a[i];
+		a[i] = a[size - 1 - i];
+		a[size - 1 - i] = tmp;
+	}
+
+	printf("\n\nThe reversed array is:\n");
+
+	for (i = 0; i < size; i++)
+	{
+		printf("a[%d] = %d\n", i, a[i]);
+	}
+}
+
+/** Sorts an array to be ordered from smallest to largest number
+ * @param a[] The array to be sorted and whose elements are sorted
+ * @param size The length of the array
+ */
+void sort(int a[], size_t size)
+{
+	int tmp;
+	int i;
+	int j;
+	int min_index;
+
+	for (i = 0; i < size - 1; i++)
+	{
+		min_index = i;
+
+		for (j = i + 1; j < size; j++)
+		{
+			if (a[j] < a[min_index])
+			{
+				min_index = j;
+				tmp = a[i];
+				a[i] = a[min_index];
+				a[min_index] = tmp;
+			}
+		}
+	}
+
+	for (i = 0; i < size - 1; i++)
+	{
+		min_index = i;
+
+		for (j = i + 1; j < size; j++)
+		{
+			if (a[j] < a[min_index])
+			{
+				min_index = j;
+				tmp = a[i];
+				a[i] = a[min_index];
+				a[min_index] = tmp;
+			}
+		}
+	}
+
+	for (i = 0; i < size - 1; i++)
+	{
+		min_index = i;
+
+		for (j = i + 1; j < size; j++)
+		{
+			if (a[j] < a[min_index])
+			{
+				min_index = j;
+				tmp = a[i];
+				a[i] = a[min_index];
+				a[min_index] = tmp;
+			}
+		}
+	}
+	
+}
+
+/** Sorts an array from smallest to largest number, then calculates
+ * the location of the median in the array, and then returns the actual
+ * median value.
+ * @param a[] The given array
+ * @param size The length of the array
+ * @return The median value of the array stored in M
+ */
+int median_ele(int a[], size_t size)
+{
+	sort(a, size);
+	
+	int M;
+
+	if (size % 2 != 0) /*Odd array*/
+	{
+		M = (a[size / 2] + (a[size / 2] + 1)) / 2;
+	} else 
+	{
+		M = a[(size + 1) / 2];
+	}
+
+	return M;
+}
+
+/** Counts the number of even elements in an array.
+ * @param a[] The array in question
+ * @param size The length of the array
+ * @return The count of the even elements
+ */
+int count_even(int a[], size_t size)
+{
+	int count = 0;
+	int i;
+
+	for (i = 0; i < size; i++)
+	{
+		if (a[i] % 2 == 0)
+		{
+			count += 1;
+		}
+	}
+
+	return count;
+}
+
+/** Counts the number of odd elements in an array
+ * @param a[] The array in question
+ * @param size The length of the array
+ * @return The count of the odd elements
+ */
+int count_odd(int a[], size_t size)
+{
+	int count = 0;
+	int i;
+
+	for (i = 0; i < size; i++)
+	{
+		if (a[i] % 2 != 0)
+		{
+			count += 1;
+		}
+	}
+
+	return count;
+}
+
+/** Counts the number of odd elements in an array
+ * @param a[] The array in question
+ * @param size The length of the array
+ * @param x The given number that acts as the denominator for modulo
+ * @return The count of the odd elements
+ */
+int divisible_count(int a[], size_t size, int x)
+{
+	int count = 0;
+	int i;
+
+	if (x != 0)
+	{
+		for (i = 0; i < size; i++)
+		{
+			if (a[i] % x == 0)
+			{
+				count += 1;
+			}
+		}
 	}
 
 	return count;
