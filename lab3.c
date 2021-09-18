@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include "array.h"
 
-void print_summary(size_t size, int max, int min, int mid, int LTM, int GTM);
+void print_summary(size_t size, int max, int min, int mid, int LTM, int GTM, int lin, int sum, double average, int med, int even, int odd, int div);
 
 int main(void)
 {
@@ -51,6 +51,13 @@ int main(void)
         int mid;
         int LTM;
         int GTM;
+        int lin;
+        int sum;
+        double avg;
+        int Med;
+        int even;
+        int odd;
+        int div;
 
         /* Variables for storing test array statistics */
         int max_zero;
@@ -82,6 +89,48 @@ int main(void)
         int GTM_up;
         int GTM_down;
         int GTM_jostle;
+
+        int lin_zero;
+        int lin_one;
+        int lin_up;
+        int lin_down;
+        int lin_jostle;
+
+        int sum_zero;
+        int sum_one;
+        int sum_up;
+        int sum_down;
+        int sum_jostle;
+
+        double avg_zero;
+        double avg_one;
+        double avg_up;
+        double avg_down;
+        double avg_jostle;
+
+        int Med_zero;
+        int Med_one;
+        int Med_up;
+        int Med_down;
+        int Med_jostle;
+
+        int even_zero;
+        int even_one;
+        int even_up;
+        int even_down;
+        int even_jostle;
+
+        int odd_zero;
+        int odd_one;
+        int odd_up;
+        int odd_down;
+        int odd_jostle;
+
+        int div_zero;
+        int div_one;
+        int div_up;
+        int div_down;
+        int div_jostle;
 
         /** Varaibles for testing of get_count()
          int countLT;
@@ -131,6 +180,21 @@ int main(void)
         size_t size_up = sizeof(up) / sizeof(int);
         size_t size_down = sizeof(down) / sizeof(int);
         size_t size_jostle = sizeof(jostle) / sizeof(int);
+
+        /* This prints if the execution of lab3 is running test arrays */
+        printf("\n\n\n-----This execution of lab3.c is a TEST with test arrays-----\n\n\n");
+        /* This prints if the execution of lab3 is running only the main array provided */
+        //printf("\n\n\n-----This execution of lab3.c has the MAIN array-----\n\n\n");
+
+        /* Prints the main array before any calculations or modificiations are made */
+        print_array(a, size);
+
+        /* Prints the test arrays before any calculations or modifications are made */
+        print_array(zero, size_zero);
+        print_array(one, size_one);
+        print_array(up, size_up);
+        print_array(down, size_down);
+        print_array(jostle, size_jostle);
 
         /*Calculates the max of the main array */
         max = find_max(a, size);
@@ -218,30 +282,119 @@ int main(void)
          jostleE = get_count(jostle, size_jostle, E, 5);
         */
 
-        /* This prints if the execution of lab3 is running test arrays */
-        printf("\n\n\n-----This execution of lab3.c is a TEST with test arrays-----\n\n\n");
-        /* This prints if the execution of lab3 is running only the main array provided */
-        //printf("\n\n\n-----This execution of lab3.c has the MAIN array-----\n\n\n");
+        /* Searches the main array for the presence of the midpoint */
+        lin = linear_search(a, size, mid);
+
+        /* Searches test arrays for the presence of their midpoint */
+        lin_zero = linear_search(zero, size_zero, mid_zero);
+        lin_one = linear_search(one, size_one, mid_one);
+        lin_up = linear_search(up, size_up, mid_up);
+        lin_down = linear_search(down, size_down, mid_down);
+        lin_jostle = linear_search(jostle, size_jostle, mid_jostle);
+
+        /* Calculates the sum of the elements in the main array */
+        sum = sum_ele(a, size);
+
+        /* Calculates the sum of the elements in the test arrays */
+        sum_zero = sum_ele(zero, size_zero);
+        sum_one = sum_ele(one, size_one);
+        sum_up = sum_ele(up, size_up);
+        sum_down = sum_ele(down, size_down);
+        sum_jostle = sum_ele(jostle, size_jostle);
+
+        /* Calculates the average of the elements in the main array */
+        avg = avg_ele(size, sum);
+
+        /* Calculates the average of the elements in the test arrays */
+        avg_zero = avg_ele(size_zero, sum_zero);
+        avg_one = avg_ele(size_one, sum_one);
+        avg_up = avg_ele(size_up, sum_up);
+        avg_down = avg_ele(size_down, sum_down);
+        avg_jostle = avg_ele(size_jostle, sum_jostle);
+
+        /* Calculates the count of the even/odd numbers in the main array */
+        even = count_even(a, size);
+        odd = count_odd(a, size);
+
+        /* Calculates the count of the even/odd numbers in the test arrays */
+        even_zero = count_even(zero, size_zero);
+        odd_zero = count_odd(zero, size_zero);
+        even_one = count_even(one, size_one);
+        odd_one = count_odd(one, size_one);
+        even_up = count_even(up, size_up);
+        odd_up = count_odd(up, size_up);
+        even_down = count_even(down, size_down);
+        odd_down = count_odd(down, size_down);
+        even_jostle = count_even(jostle, size_jostle);
+        odd_jostle = count_odd(jostle, size_jostle);
+
+        /* Calculates the number of elements divisible by the min of the main array */
+        div = divisible_count(a, size, min);
+
+        /* Calculates the number of elements divisible by the mins of test arrays */
+        div_zero = divisible_count(zero, size_zero, min_zero);
+        div_one = divisible_count(one, size_one, min_one);
+        div_up = divisible_count(up, size_up, min_up);
+        div_down = divisible_count(down, size_down, min_down);
+        div_jostle = divisible_count(jostle, size_jostle, min_jostle);
+
+        /* Tests to make sure that sort() actually sorts the arrays */
+        /**
+         sort(a, size);
+         sort(zero, size_zero);
+         sort(one, size_one);
+         sort(up, size_up);
+         sort(down, size_down);
+         sort(jostle, size_jostle);
+        */
+
+        /* Median is last to ensure that the order of the test arrays
+         * are actually tested by every other function, before they
+         * are sorted appropriately
+         */
+        /* Calculates the median of the main array */
+        Med = median_ele(a, size);
+
+        /* Calculates the median of the test arrays */
+        Med_zero = median_ele(zero, size_zero);
+        Med_one = median_ele(one, size_one);
+        Med_up = median_ele(up, size_up);
+        Med_down = median_ele(down, size_down);
+        Med_jostle = median_ele(jostle, size_jostle);
+
 
         /* Print information about the main array in question */
 	print_array(a, size);
-        print_summary(size, max, min, mid, LTM, GTM);
+        print_summary(size, max, min, mid, LTM, GTM, lin, sum, avg, Med, even, odd, div);
 
         /* Print information about the test arrays */
         print_array(zero, size_zero);
-        print_summary(size_zero, max_zero, min_zero, mid_zero, LTM_zero, GTM_zero);
+        print_summary(size_zero, max_zero, min_zero, mid_zero, LTM_zero, GTM_zero, lin_zero, sum_zero, avg_zero, Med_zero, even_zero, odd_zero, div_zero);
         
         print_array(one, size_one);
-        print_summary(size_one, max_one, min_one, mid_one, LTM_one, GTM_one);
+        print_summary(size_one, max_one, min_one, mid_one, LTM_one, GTM_one, lin_one, sum_one, avg_one, Med_one, even_one, odd_one, div_one);
         
         print_array(up, size_up);
-        print_summary(size_up, max_up, min_up, mid_up, LTM_up, GTM_up);
+        print_summary(size_up, max_up, min_up, mid_up, LTM_up, GTM_up, lin_up, sum_up, avg_up, Med_up, even_up, odd_up, div_up);
         
         print_array(down, size_down);
-        print_summary(size_down, max_down, min_down, mid_down, LTM_down, GTM_down);
+        print_summary(size_down, max_down, min_down, mid_down, LTM_down, GTM_down, lin_down, sum_down, avg_down, Med_down, even_down, odd_down, div_down);
         
         print_array(jostle, size_jostle);
-        print_summary(size_jostle, max_jostle, min_jostle, mid_jostle, LTM_jostle, GTM_jostle);
+        print_summary(size_jostle, max_jostle, min_jostle, mid_jostle, LTM_jostle, GTM_jostle, lin_jostle, sum_jostle, avg_jostle, Med_jostle, even_jostle, odd_jostle, div_jostle);
+
+        /* Reverses the main array */
+        reverse(a, size);
+
+        /* Reverses the test arrays */
+        /**
+         reverse(zero, size_zero);
+         reverse(one, size_one);
+         reverse(up, size_up);
+         reverse(down, size_down);
+         reverse(jostle, size_jostle);
+        */
+
 
 	return 0;
 }
@@ -250,12 +403,34 @@ int main(void)
  * @param size the size or length of the array
  * @param max the maximum value of the array
  */
-void print_summary(size_t size, int max, int min, int mid, int LTM, int GTM)
+void print_summary(size_t size, int max, int min, int mid, int LTM, int GTM, int lin, int sum, double avg, int med, int even, int odd, int div)
 {
         printf("Size of array = %zu\n", size);
-        printf("The largest value (maximum) of the array = %d\n", max);
-        printf("The smallest value (minimum of the array = %d\n", min);
-        printf("The integer midpoint of the max and min of the array = %d\n", mid);
-        printf("The number of elements less than the midpoint (%d) = %d\n", mid, LTM);
-        printf("The number of elements greater than the midpoint (%d) = %d\n", mid, GTM);
+        printf("The largest value (maximum) of the array:                          %d\n", max);
+        printf("The smallest value (minimum) of the array:                         %d\n", min);
+        printf("The integer midpoint of the max and min of the array:              %d\n", mid);
+        printf("The number of elements less than the midpoint (%d):                 %d\n", mid, LTM);
+        printf("The number of elements greater than the midpoint (%d):              %d\n", mid, GTM);
+        
+        if (lin != -1)
+        {
+                printf("Midpoint (%d) was FOUND in the list\n", mid);
+        } else if (lin == -1)
+        {
+                printf("Midpoint (%d) was NOT FOUND in the list\n", mid); 
+        }
+
+        printf("The sum of all the elements:                                       %d\n", sum);
+        printf("The average of all the elements:                                   %lf\n", avg);
+        printf("The median:                                                        %d\n", med);
+        printf("The count of even elements:                                        %d\n", even);
+        printf("The count of odd elements:                                         %d\n", odd);
+
+        if (div != 0)
+        {
+                printf("Count of elements divisible by the minimum of the array:           %d\n\n\n", div);
+        } else
+        {
+                printf("The minimum of the array was zero, could not find the number of elements divisible by it!\n\n\n");
+        }
 }
