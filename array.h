@@ -27,6 +27,15 @@ int find_max(int a[], size_t size);
 int find_min(int a[], size_t size);
 int midpoint(int min, int max);
 int get_count(int a[], size_t size, int type, int x);
+int linear_search(int a[], size_t size, int x);
+int sum_ele(int a[], size_t size);
+double avg_ele(size_t size, int sum);
+void reverse(int a[], size_t size);
+void sort(int a[], size_t size);
+int median_ele(int a[], size_t size);
+int count_even(int a[], size_t size);
+int count_odd(int a[], size_t size);
+int divisible_count(int a[], size_t size, int x);
 
 /* #define stuff here */
 #define LT 0 /* Less than */
