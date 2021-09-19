@@ -246,6 +246,7 @@ void reverse(int a[], size_t size)
 	{
 		printf("a[%d] = %d\n", i, a[i]);
 	}
+	printf("\n\n");
 }
 
 /** Sorts an array to be ordered from smallest to largest number
@@ -258,53 +259,27 @@ void sort(int a[], size_t size)
 	int i;
 	int j;
 	int min_index;
+	int sort_number = 0;
 
-	for (i = 0; i < size - 1; i++)
+	while (sort_number < 1000)
 	{
-		min_index = i;
-
-		for (j = i + 1; j < size; j++)
+		for (i = 0; i < size - 1; i++)
 		{
-			if (a[j] < a[min_index])
+			min_index = i;
+
+			for (j = i + 1; j < size; j++)
 			{
-				min_index = j;
-				tmp = a[i];
-				a[i] = a[min_index];
-				a[min_index] = tmp;
+				if (a[j] < a[min_index])
+				{
+					min_index = j;
+					tmp = a[i];
+					a[i] = a[min_index];
+					a[min_index] = tmp;
+				}
 			}
 		}
-	}
 
-	for (i = 0; i < size - 1; i++)
-	{
-		min_index = i;
-
-		for (j = i + 1; j < size; j++)
-		{
-			if (a[j] < a[min_index])
-			{
-				min_index = j;
-				tmp = a[i];
-				a[i] = a[min_index];
-				a[min_index] = tmp;
-			}
-		}
-	}
-
-	for (i = 0; i < size - 1; i++)
-	{
-		min_index = i;
-
-		for (j = i + 1; j < size; j++)
-		{
-			if (a[j] < a[min_index])
-			{
-				min_index = j;
-				tmp = a[i];
-				a[i] = a[min_index];
-				a[min_index] = tmp;
-			}
-		}
+		sort_number += 1;
 	}
 	
 }
