@@ -1,0 +1,22 @@
+Script started on 2021-09-19 00:09:11-06:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="203" LINES="55"]
+]0;ben@Clover-VirtualBox: ~/cse113/lab3[01;32mben@Clover-VirtualBox[00m:[01;34m~/cse113/lab3[00m$ gcc -g -Wall credit.c -o credit
+]0;ben@Clover-VirtualBox: ~/cse113/lab3[01;32mben@Clover-VirtualBox[00m:[01;34m~/cse113/lab3[00m$ ./credit
+Please enter your (16 digit) credit card number: 4012888888881881
+
+The card number is: 4012888888881881
+
+
+Card is valid
+
+]0;ben@Clover-VirtualBox: ~/cse113/lab3[01;32mben@Clover-VirtualBox[00m:[01;34m~/cse113/lab3[00m$ ./credit
+Please enter your (16 digit) credit card number: 4012888888881882
+
+The card number is: 4012888888881882
+
+
+Card is invalid
+
+]0;ben@Clover-VirtualBox: ~/cse113/lab3[01;32mben@Clover-VirtualBox[00m:[01;34m~/cse113/lab3[00m$ sxit[K[K[K[Kexit
+exit
+
+Script done on 2021-09-19 00:10:01-06:00 [COMMAND_EXIT_CODE="0"]
